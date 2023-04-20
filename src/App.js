@@ -20,7 +20,8 @@ function App(props) {
 
     return localStream;
   };
-  useEffect(async () => {
+
+  const hangdelcode = async () => {
     const stream = await getUserStream();
     stream.getVideoTracks()[0].enabled = false;
     props.setMainStream(stream);
@@ -42,6 +43,9 @@ function App(props) {
         userStatusRef.onDisconnect().remove();
       }
     });
+  }
+  useEffect(()=>{
+    hangdelcode()
   }, []);
 
   const connectedRef = db.database().ref(".info/connected");
